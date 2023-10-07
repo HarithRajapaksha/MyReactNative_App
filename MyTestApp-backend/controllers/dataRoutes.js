@@ -1,25 +1,27 @@
-const allData=require('../Models/DetailsModel')
+const Data=require('../Models/DetailsModel')
 const router=require("express").Router()
 const express=require('express')
 const app=express()
 
+app.use(express.json());
+
 //Add data
 router.route("/add").post((req,res)=>{
 
-    const name=req.params.name;
-    const age=req.params.age;
-    const stream=req.params.stream;
+    const name=req.body.name;
+    const age=req.body.age;
+    const stream=req.body.stream;
 
-    const dataAddObj=new allData({
+    const dataAddObj=new Data({
         name,
         age,
         stream,
     })
 
     dataAddObj.save().then(()=>{
-        res.json("data addedn Success")
+        res.json("data added Success")
     }).catch((err)=>{
-        alert('Video added Error')
+        alert('data added Error')
         console.log(err)
     })
 })
