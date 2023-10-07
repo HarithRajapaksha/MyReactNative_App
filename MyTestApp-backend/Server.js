@@ -21,10 +21,13 @@ db.on('error',(err)=>{
     console.error("MongoDB connection error"+err);
 })
 
-db.once('close',()=>{
+db.once('open',()=>{
     console.log("Db connection succesfull");
 })
 
 app.listen(PORT,()=>{
     console.log("Server is runnig on port "+PORT);
 })
+
+const MyRouter=require('./controllers/dataRoutes')
+app.use('/MyData',MyRouter)

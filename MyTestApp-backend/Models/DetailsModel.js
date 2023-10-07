@@ -17,4 +17,4 @@ const mydata=new sheema({
 });
 
 const myData=mongoose.model("myData",mydata);
-module.exports(myData);
+module.exports=myData;
