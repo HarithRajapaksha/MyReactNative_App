@@ -3,17 +3,17 @@ const sheema=mongoose.Schema;
 
 const mydata=new sheema({
     
-    name:{
+    Name:{
         type:String,
         require:true
     },
 
-    age:{
+    Age:{
        type:Number,
        require:true
     },
 
-    stream:{
+    Stream:{
         type:String,
         require:true
     },
