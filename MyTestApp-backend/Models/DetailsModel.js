@@ -3,21 +3,21 @@ const sheema=mongoose.Schema;
 
 const mydata=new sheema({
     
-    Name:{
+    name:{
         type:String,
         require:true
     },
 
-    Age:{
+    age:{
        type:Number,
        require:true
     },
 
-    Stream:{
+    stream:{
         type:String,
         require:true
     },
 });
 
-const myData=mongoose.model("myData",mydata);
-module.exports=myData;
+const StudentData=mongoose.model("mydata",mydata);
+module.exports=StudentData;

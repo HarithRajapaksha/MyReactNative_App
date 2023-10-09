@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import {Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import axios from 'axios'
+import { NetworkInfo } from "react-native-network-info";
 
 export default function DataEnter() {
 
   const[name,setName]=useState('');
   const[stream,setStream]=useState('');
   const[age,setAge]=useState('');
+  
+  
 
   const UserData={
     Name:name,
     Stream:stream,
     Age:age
   }
- 
 
-  const handleDataSubmit=()=>{
 
-    axios.post("http://103.21.164.116:3000/MyData/add",UserData).then((res)=>{
-      console.log("data Added"+res)
-  }).catch((err)=>{
-    console.log("Data added error"+err)
-  })
-
-  }
-
+  const handleDataSubmit = async () => {
+    try {
+      const response = await axios.post(`http://10.0.2.2:3000/MyData/add`, UserData);
+      console.log("Data Added", response);
+    } catch (error) {
+      console.log("Data added error", error);
+    }
+  };
     
   return (
     
