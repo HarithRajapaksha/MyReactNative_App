@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import axios from 'axios'
+import { NetworkInfo } from "react-native-network-info";
 
 export default function DataEnter() {
 
+  const[name,setName]=useState('');
+  const[stream,setStream]=useState('');
+  const[age,setAge]=useState('');
+  
+  
+
+  const UserData={
+    Name:name,
+    Stream:stream,
+    Age:age
+  }
+
+
+  const handleDataSubmit = async () => {
+    try {
+      const response = await axios.post(`http://10.0.2.2:3000/MyData/add`, UserData);
+      console.log("Data Added", response);
+    } catch (error) {
+      console.log("Data added error", error);
+    }
+  };
     
   return (
     
@@ -21,6 +44,7 @@ export default function DataEnter() {
       fontSize: 20, // Small text size
     }}
     placeholder="Name"
+    onChangeText={(name)=>setName(name)}
   />
 
 <View style={{paddingTop:20,paddingHorizontal:10.5,paddingBottom:10}}>
@@ -38,6 +62,7 @@ export default function DataEnter() {
       fontSize: 20, // Default text size
     }}
     placeholder="Age"
+    onChangeText={(age)=>setAge(age)}
   />
 
 <View style={{paddingBottom:10,paddingTop:10,paddingHorizontal:10.5}}>
@@ -55,11 +80,12 @@ export default function DataEnter() {
       fontSize: 20, // Default text size
     }}
     placeholder="Subject Stream"
+    onChangeText={(subjectStream)=>setStream(subjectStream)}
   />
 
   <View style={{paddingTop:40,borderRadius:20}}>
   
-       <TouchableOpacity style={{backgroundColor:'#FF0000',alignItems:'center',borderRadius:10,height:40}}>
+       <TouchableOpacity style={{backgroundColor:'#FF0000',alignItems:'center',borderRadius:10,height:40}} onPress={handleDataSubmit}>
         <Text style={{fontWeight:'bold',fontSize:30}}>
             SUBMIT
         </Text>
