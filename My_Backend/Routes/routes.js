@@ -3,6 +3,8 @@ const router=require('express').Router()
 const express=require('express')
 const app=express()
 
+
+//Data sdding
 router.route("/add").post((req,res)=>{
      const name=req.body.name
      const age=req.body.age
@@ -22,6 +24,17 @@ router.route("/add").post((req,res)=>{
         console.log('data added error'+err.message);
      })
 
+})
+
+//data read
+
+router.route("/").get(async(req,res)=>{
+    alldata.find().then((data)=>{
+        res.send(data)
+    }).catch((err)=>{
+        console.log(err.message);
+        res.send(err.message)
+    })
 })
 
 module.exports = router;

@@ -92,8 +92,8 @@ export default function DataEnter() {
        </TouchableOpacity>
 
   </View>
-
-
+  
+    
   </View>
 
   )
