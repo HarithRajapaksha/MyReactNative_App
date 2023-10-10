@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DataEnter from './Components/DataEnter'
+import DataRead from './Components/DataRead';
 
 export default function App() {
  
@@ -11,8 +12,9 @@ export default function App() {
      
 <NavigationContainer>
 
-    <Stack.Navigator initialRouteName='DataEnter'>
+    <Stack.Navigator initialRouteName='DataRead'>
        <Stack.Screen name="DataEnter" component={DataEnter}/>
+       <Stack.Screen name="DataRead" component={DataRead}/>
     </Stack.Navigator>
 
 </NavigationContainer>

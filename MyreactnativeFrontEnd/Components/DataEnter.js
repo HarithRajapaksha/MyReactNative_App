@@ -12,9 +12,9 @@ export default function DataEnter() {
   
 
   const UserData={
-    Name:name,
-    Stream:stream,
-    Age:age
+    name:name,
+    stream:stream,
+    age:age
   }
 
 
@@ -92,8 +92,8 @@ export default function DataEnter() {
        </TouchableOpacity>
 
   </View>
-
-
+  
+    
   </View>
 
   )
