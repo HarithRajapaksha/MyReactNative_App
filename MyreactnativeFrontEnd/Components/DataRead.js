@@ -12,7 +12,7 @@ const DataRead = () => {
 
    const dataFetch=()=>{
          
-    axios.get('http://10.0.2.2:3000/MyData').then(res=>{
+    axios.get('http://10.0.2.2:3000/MyData/').then(res=>{
       setData(res.data)
   }).catch((err)=>{
       console.log("data read error: " + err);
@@ -28,7 +28,15 @@ const DataRead = () => {
       navigation.navigate('DataEnter');
     };
 
-
+  const deleteData=async(id)=>{
+    console.log(id);
+    try {
+      await axios.delete(`http://10.0.2.2:3000/MyData/delete/${id}`);
+      setData(prevData=>prevData.filter(item=>item._id !==id))
+    } catch (error) {
+      alert('Data are not deleted'+error.message)
+    }
+  }
 
   return (
    
@@ -43,14 +51,14 @@ const DataRead = () => {
 <FlatList data={data} keyExtractor={(item,index)=>index.toString() }
 renderItem={({item})=>(
 
-      <View style={{padding:10,borderRadius:10,marginBottom:10,borderWidth:1}}>
+      <View style={{padding:10,borderRadius:10,marginBottom:10,borderWidth:1,marginLeft:10,marginRight:10}}>
           <Text style={{fontSize:20,fontWeight:'bold'}}>{item.name}</Text>
           <Text style={{fontSize:20,fontWeight:'bold'}}>{item.age}</Text>
           <Text style={{fontSize:20,fontWeight:'bold'}}>{item.stream}</Text>
 
 
           <TouchableOpacity style={{backgroundColor:'yellow',
-          fontSize:15,fontWeight:'bold',marginLeft:290,borderRadius:40,alignItems:'center',width:80,marginBottom:10}}> 
+          fontSize:15,fontWeight:'bold',marginLeft:260,borderRadius:40,alignItems:'center',width:80,marginBottom:10}}> 
          
           <View style={{flexDirection:'row'}}>
              
@@ -62,7 +70,7 @@ renderItem={({item})=>(
 
          
          <TouchableOpacity style={{backgroundColor:'red',
-          fontSize:15,fontWeight:'bold',marginLeft:290,borderRadius:40,alignItems:'center',width:80}}> 
+          fontSize:15,fontWeight:'bold',marginLeft:260,borderRadius:40,alignItems:'center',width:80}} onPress={()=>deleteData(item._id)}> 
          
           <View style={{flexDirection:'row'}}>
              
@@ -84,6 +92,7 @@ renderItem={({item})=>(
 <TouchableOpacity
   style={{
     backgroundColor: 'blue',
+    marginTop:8,
     padding: 15,
     borderRadius: 5,
     marginBottom: 10,

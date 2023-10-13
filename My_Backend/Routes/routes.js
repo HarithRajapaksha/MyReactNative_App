@@ -37,4 +37,15 @@ router.route("/").get(async(req,res)=>{
     })
 })
 
+//data delete
+router.route("/delete/:id").delete(async(req,res)=>{
+    let id=req.params.id;
+
+    await alldata.findByIdAndDelete(id).then(()=>{
+         res.send("data deleted");
+    }).catch((err)=>{
+        res.send("Data not delete")
+    })
+})
+
 module.exports = router;
