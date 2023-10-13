@@ -48,4 +48,20 @@ router.route("/delete/:id").delete(async(req,res)=>{
     })
 })
 
+//data update
+router.route("/update/:id").put(async(req,res)=>{
+    let id=req.params.id;
+    const{name,age,stream}=req.body;
+
+    const updateData=({name,age,stream})
+
+    try {
+        await alldata.findByIdAndUpdate(id,updateData).then(()=>{
+            res.send("data updated");
+        })
+    } catch (error) {
+        res.send("Data not updated")
+    }
+})
+
 module.exports = router;

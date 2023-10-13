@@ -38,6 +38,10 @@ const DataRead = () => {
     }
   }
 
+  const updateData = (id) => {
+       navigation.navigate('Dataupdate',{id});
+  }
+
   return (
    
     <View>
@@ -58,7 +62,7 @@ renderItem={({item})=>(
 
 
           <TouchableOpacity style={{backgroundColor:'yellow',
-          fontSize:15,fontWeight:'bold',marginLeft:260,borderRadius:40,alignItems:'center',width:80,marginBottom:10}}> 
+          fontSize:15,fontWeight:'bold',marginLeft:260,borderRadius:40,alignItems:'center',width:80,marginBottom:10}} onPress={()=>updateData(item._id)}> 
          
           <View style={{flexDirection:'row'}}>
              
