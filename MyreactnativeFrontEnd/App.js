@@ -12,7 +12,7 @@ export default function App() {
      
 <NavigationContainer>
 
-    <Stack.Navigator initialRouteName='DataRead'>
+    <Stack.Navigator initialRouteName='DataEnter'>
        <Stack.Screen name="DataEnter" component={DataEnter}/>
        <Stack.Screen name="DataRead" component={DataRead}/>
     </Stack.Navigator>
