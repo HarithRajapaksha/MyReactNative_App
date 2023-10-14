@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import axios from 'axios'
-import { NetworkInfo } from "react-native-network-info";
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function DataEnter() {
 
@@ -19,6 +20,7 @@ export default function DataEnter() {
 
 
   const handleDataSubmit = async () => {
+
     try {
       const response = await axios.post(`http://10.0.2.2:3000/MyData/add`, UserData);
       console.log("Data Added", response);
@@ -26,6 +28,17 @@ export default function DataEnter() {
       console.log("Data added error", error);
     }
   };
+
+  const navigation=useNavigation();
+
+  const PressButton=()=>{
+     navigation.navigate('DataRead');
+  }
+
+  const Press=()=>{
+     PressButton();
+     handleDataSubmit();
+  }
     
   return (
     
@@ -85,7 +98,7 @@ export default function DataEnter() {
 
   <View style={{paddingTop:40,borderRadius:20}}>
   
-       <TouchableOpacity style={{backgroundColor:'#FF0000',alignItems:'center',borderRadius:10,height:40}} onPress={handleDataSubmit}>
+       <TouchableOpacity style={{backgroundColor:'#FF0000',alignItems:'center',borderRadius:10,height:40}} onPress={Press}>
         <Text style={{fontWeight:'bold',fontSize:30}}>
             SUBMIT
         </Text>

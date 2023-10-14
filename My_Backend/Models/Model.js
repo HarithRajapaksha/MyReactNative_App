@@ -7,7 +7,7 @@ const mydatas=new sheet({
         required:true
     },
     age:{
-        type:Number,
+        type:String,
         required:true
     },
     stream:{
