@@ -27,7 +27,6 @@ router.route("/add").post((req,res)=>{
 })
 
 //data read
-
 router.route("/").get(async(req,res)=>{
     alldata.find().then((data)=>{
         res.send(data)
@@ -36,6 +35,21 @@ router.route("/").get(async(req,res)=>{
         res.send(err.message)
     })
 })
+
+//get one person data
+router.route("/oneUser/:id").get(async(req,res)=>{
+    let id=req.params.id;
+
+   try {      
+    alldata.findById(id).then((data)=>{
+        res.json(data)
+    })
+
+   } catch (error) {
+     console.log("One data are read error "+error)
+   }
+})
+
 
 //data delete
 router.route("/delete/:id").delete(async(req,res)=>{
